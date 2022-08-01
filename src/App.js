@@ -1,4 +1,5 @@
-import NavBar from "./components/navBar"
+import NavBar from "./components/NavBar"
+import Main from "./components/Main"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar/>
+        <Main/>
       </BrowserRouter>
     </div>
   );

@@ -1,0 +1,40 @@
+[{
+    "name": "Caña Okuma",
+    "category": "Pesca",
+    "subcategory": "Cañas",
+    "stock": 0,
+    "desc": "",
+    "upc": ""
+},
+{
+    "name": "Caña Shimano",
+    "category": "Pesca",
+    "subcategory": "Cañas",
+    "stock": 0,
+    "desc": "",
+    "upc": ""
+},
+{
+    "name": "Reel Okuma",
+    "category": "Pesca",
+    "subcategory": "Reeles",
+    "stock": 0,
+    "desc": "",
+    "upc": ""
+},
+{
+    "name": "Termo Stanley",
+    "category": "Camping",
+    "subcategory": "Recipientes termicos",
+    "stock": 0,
+    "desc": "",
+    "upc": ""
+},
+{
+    "name": "Carpa Spinit",
+    "category": "Camping",
+    "subcategory": "Carpas",
+    "stock": 0,
+    "desc": "",
+    "upc": ""
+}]
