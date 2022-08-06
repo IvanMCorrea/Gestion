@@ -1,5 +1,6 @@
-import React from 'react'
-import {Link} from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+//import { exportDataToFirestore } from "../services/firestore";
 
 const NavBar = () => {
   return (
@@ -14,13 +15,17 @@ const NavBar = () => {
           <Link to="/" className="navBar__list--category">
             Productos
           </Link>
-          <Link to="/contacto" className="navBar__list--category">
-            Buscar
+          <Link
+            to="/contacto"
+            className="navBar__list--category"
+            /* onClick={exportDataToFirestore()} */
+          >
+            Copia de seguridad
           </Link>
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

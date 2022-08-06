@@ -47,7 +47,7 @@ const TableNav = ({ prods }) => {
       </div>
       <div>
         <select name="subcategorias">
-          <option value="all">Todos los productos</option>
+          <option value="all">Todas las subcategorias</option>
           {subcategorias !== ""
             ? subcategorias.map((item, index) => (
                 <option key={index} value={item}>
