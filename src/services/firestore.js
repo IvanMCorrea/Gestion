@@ -77,3 +77,61 @@ export async function exportDataToFirestore() {
       .catch((error) => console.log("error: ", error));
   });
 }
+export async function traerProds() {
+  const prodsCollection = collection(appFirestore, "productos");
+  const prodsSnapshot = await getDocs(prodsCollection);
+  let respuesta = prodsSnapshot.docs.map((doc) => {
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+  return respuesta;
+}
+export async function traerProdsCategoria(categoriaId, type) {
+  const prodsCollection = collection(appFirestore, "productos");
+  const q = query(prodsCollection, where(type, "==", categoriaId));
+  const prodsSnapshot = await getDocs(q);
+  let respuesta = prodsSnapshot.docs.map((doc) => {
+    return {
+      ...doc.data(),
+      id: doc.id,
+    };
+  });
+  return respuesta;
+}
+export async function traerCategorias() {
+  let prods = [];
+  let category = [];
+  let categories = traerProductos()
+    .then((res) => {
+      prods = res;
+    })
+    .then(() => {
+      category = prods.map((item) => {
+        return (category = [item.category]);
+      });
+      const array = new Set(category.map((obj) => obj[0]));
+      const cat = [...array];
+      return cat;
+    });
+  return categories;
+}
+export async function mostrarDetalleProd(itemId) {
+  const docref = doc(appFirestore, "productos", itemId);
+  const docSnapshot = await getDoc(docref);
+  return {
+    id: docSnapshot.id,
+    ...docSnapshot.data(),
+  };
+}
+export async function createNewProd(dataProd) {
+  const orderColectionRef = collection(appFirestore, "orders");
+  const dateTimestamp = Timestamp.now();
+  const dataOrderWithDate = {
+    ...dataProd,
+    date: dateTimestamp,
+  };
+  const orderCreated = await addDoc(orderColectionRef, dataOrderWithDate);
+  return orderCreated;
+}
