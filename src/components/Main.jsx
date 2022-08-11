@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import TableNav from "./TableNav";
-import listaProductos from "../data/db.json";
 import TableBody from "./TableBody";
-//import { traerProductos } from "../services/firestore";
+import { traerProds } from "../services/firestore";
 
 const Main = () => {
   const [productos, setProductos] = useState([]);
   const [renderizar, setRenderizar] = useState(false);
   useEffect(() => {
-    setProductos(listaProductos);
-    if (productos !== "") {
-      setRenderizar(true);
-    }
+    traerProds()
+      .then((res) => {
+        setProductos(res);
+      })
+      .then(() => {
+        if (productos !== "") {
+          setRenderizar(true);
+        }
+      });
   }, [productos]);
   const renderizarCod = () => {
     if (productos !== "") {

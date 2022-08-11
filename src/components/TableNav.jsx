@@ -1,39 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { traerCategorias, traerSubCategorias } from "../services/firestore";
 
 const TableNav = ({ prods }) => {
   const [categorias, setCategorias] = useState([]);
   const [subcategorias, setSubCategorias] = useState([]);
-  useEffect(() => {
-    const getCategorias = (productos) => {
-      let category = [];
-      category = productos.map((item) => {
-        return (category = [item.category]);
-      });
-      const array = new Set(category.map((obj) => obj[0]));
-      const cat = [...array];
-      return cat;
-    };
-    if (prods !== "") {
-      setCategorias(getCategorias(prods));
-    }
-  }, [prods]);
-  useEffect(() => {
-    const getSubCategorias = (productos) => {
-      let category = [];
-      category = productos.map((item) => {
-        return (category = [item.subcategory]);
-      });
-      const array = new Set(category.map((obj) => obj[0]));
-      const cat = [...array];
-      return cat;
-    };
-    if (prods !== "") {
-      setSubCategorias(getSubCategorias(prods));
-    }
-  }, [prods]);
+  useEffect((prods) => {
+    traerCategorias().then((res) => {
+      if (prods !== "") {
+        setCategorias(res);
+      }
+    });
+  }, []);
+  useEffect((prods) => {
+    traerSubCategorias().then((res) => {
+      if (prods !== "") {
+        setSubCategorias(res);
+      }
+    });
+  }, []);
   return (
     <>
       <div>
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+          Inventario
+        </h1>
         <select name="categorias">
           <option value="all">Todos los productos</option>
           {categorias !== ""

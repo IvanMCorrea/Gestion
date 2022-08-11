@@ -103,13 +103,30 @@ export async function traerProdsCategoria(categoriaId, type) {
 export async function traerCategorias() {
   let prods = [];
   let category = [];
-  let categories = traerProductos()
+  let categories = traerProds()
     .then((res) => {
       prods = res;
     })
     .then(() => {
       category = prods.map((item) => {
         return (category = [item.category]);
+      });
+      const array = new Set(category.map((obj) => obj[0]));
+      const cat = [...array];
+      return cat;
+    });
+  return categories;
+}
+export async function traerSubCategorias() {
+  let prods = [];
+  let category = [];
+  let categories = traerProds()
+    .then((res) => {
+      prods = res;
+    })
+    .then(() => {
+      category = prods.map((item) => {
+        return (category = [item.subcategory]);
       });
       const array = new Set(category.map((obj) => obj[0]));
       const cat = [...array];
